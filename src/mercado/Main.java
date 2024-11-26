@@ -20,7 +20,8 @@ public class Main {
             System.out.println("5. Iniciar Nova Venda");
             System.out.println("6. Gerar Relatório de Produtos a Vencer");
             System.out.println("7. Gerar Relatório de Produtos com Baixo Estoque");
-            System.out.println("8. Sair");
+            System.out.println("8. Alterar Preço de Produto");
+            System.out.println("9. Sair");
             System.out.print("Escolha uma opção: ");
 
             int opcao = scanner.nextInt();
@@ -138,6 +139,22 @@ public class Main {
                     break;
 
                 case 8:
+                    // Opção para alterar preço de produto
+                    System.out.print("Informe o código do produto para alterar o preço: ");
+                    String codigoAlteracao = scanner.nextLine();
+
+                    Produto produtoAlteracao = gestorProdutos.buscarProdutoPorCodigo(codigoAlteracao);
+                    if (produtoAlteracao != null) {
+                        System.out.print("Informe o novo preço: R$ ");
+                        double novoPreco = scanner.nextDouble();
+                        produtoAlteracao.alterarPreco(novoPreco);
+                        System.out.println("Preço do produto alterado com sucesso.");
+                    } else {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
+
+                case 9:
                     sistemaAtivo = false;
                     System.out.println("Sistema encerrado.");
                     break;
@@ -150,3 +167,4 @@ public class Main {
         scanner.close();
     }
 }
+

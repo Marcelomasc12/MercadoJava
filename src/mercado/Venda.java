@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Venda {
-    private Map<Produto, Integer> itensVenda; // Produtos e suas quantidades.
+    private Map<Produto, Integer> itensVenda;
     private double subtotal;
 
     public Venda() {
@@ -19,15 +19,16 @@ public class Venda {
         } else {
             itensVenda.put(produto, quantidade);
         }
-        produto.atualizarEstoque(-quantidade); // Atualiza o estoque.
+        produto.atualizarEstoque(-quantidade);
         calcularSubtotal();
     }
 
     public void removerProduto(Produto produto) {
         if (itensVenda.containsKey(produto)) {
-            int quantidade = itensVenda.remove(produto); // Remove o produto da venda.
+            int quantidade = itensVenda.remove(produto);
             produto.atualizarEstoque(quantidade);
-        calcularSubtotal();
+            calcularSubtotal();
+        }
     }
 
     public double calcularSubtotal() {
@@ -45,3 +46,4 @@ public class Venda {
         return subtotal;
     }
 }
+
